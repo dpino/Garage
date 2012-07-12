@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.garage.business.entities" default-access="field">
+
+    <!-- Car -->
+	<class name="Car" table="car">
+		<id name="id" access="property">
+			<generator class="native" />
+		</id>
+
+		<property name="licenseNumber" column="license_number" unique="true" />
+		<property name="kilometers" />
+
+        <many-to-one name="model" class="org.garage.business.entities.Model" 
+            column="model_id" not-null="false" />
+	</class>
+
+    <!-- Model -->
+	<class name="Model" table="model">
+		<id name="id" access="property">
+			<generator class="native" />
+		</id>
+
+		<property name="name" />
+		<property name="trademark" />
+		<property name="power" />
+
+        <set name="cars" inverse="true" cascade="all-delete-orphan">
+            <key column="model_id" />
+            <one-to-many class="org.garage.business.entities.Car" />
+        </set>
+	</class>
+
+</hibernate-mapping>

@@ -30,7 +30,6 @@ public class CarDAO extends GenericDAOHibernate<Car, Long> implements
 	}
 	
 	@Override
-	@Transactional(readOnly=true)
 	public boolean exists(Car car) {
 		Criteria criteria = getSession().createCriteria(Car.class);
 		criteria.add(Restrictions.eq("licenseNumber", car.getLicenseNumber()));

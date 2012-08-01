@@ -154,7 +154,7 @@ public class CarCRUDController extends GenericForwardComposer {
 			
 			// Select car.model in list
 			Car car = carModel.getCar();
-			if (car != null && model.getId().equals(car.getModel().getId())) {
+			if (car != null && car.getModel() != null && car.getModel().getId().equals(model.getId())) {
 				item.setSelected(true);				
 			}
 		}
